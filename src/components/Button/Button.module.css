@@ -1,0 +1,14 @@
+.button {
+  font-family: inherit;
+  padding: 7px 12px;
+  font-weight: bold;
+  background: transparent;
+  border: 1px solid #FFFFFF;
+  border-radius: 6px;
+  color: #fff;
+  transition: 0.2s;
+}
+
+.button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
