@@ -35,3 +35,9 @@ body {
   padding: 0 15px;
   margin: 0 auto;
 }
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
