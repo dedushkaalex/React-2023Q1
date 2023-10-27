@@ -1,13 +1,13 @@
 import { Component } from 'react';
-import Input from '../Input/Input';
-import Button from '../Button/Button';
+import Input from '../../Elements/Input/Input';
+import Button from '../../Elements/Button/Button';
 
 import styles from './Header.module.css';
 
 interface Props {
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  value: string;
+  // onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  // onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  // value: string;
 }
 
 interface State {}
@@ -23,10 +23,13 @@ class Header extends Component<Props, State> {
           <nav className={styles.nav}>
             <Input
               placeholder="Search"
-              onChange={(e) => this.props.onChange(e)}
-              value={this.props.value}
+              onChange={(e) => console.log(e)}
+              value={''}
             />
-            <Button title="Найти" onClick={this.props.onClick} />
+            <Button
+              title="Найти"
+              onClick={() => null}
+            />
           </nav>
         </div>
       </div>
