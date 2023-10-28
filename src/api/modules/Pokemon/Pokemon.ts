@@ -11,7 +11,8 @@ export class PokemonApi extends HttpClient {
 
   public get pokemons() {
     return {
-      get: () => this.get('/cards'),
+      get: (queryParams?: Record<string, string>, options: RequestInit = {}) =>
+        this.get('/cards', options, queryParams),
     };
   }
 }

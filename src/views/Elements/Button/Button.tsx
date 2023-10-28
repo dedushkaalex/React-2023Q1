@@ -4,6 +4,8 @@ import styles from './Button.module.css';
 interface Props extends HTMLAttributes<HTMLButtonElement> {
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
+  loading?: boolean;
+  disabled?: boolean;
 }
 
 class Button extends Component<PropsWithChildren<Props>, Record<string, never>> {
@@ -11,18 +13,24 @@ class Button extends Component<PropsWithChildren<Props>, Record<string, never>> 
     super(props);
   }
 
-  static defaultProps: Pick<Props, 'type'> = {
+  static defaultProps: Pick<Props, 'type' | 'loading' | 'disabled'> = {
     type: 'button',
+    loading: false,
+    disabled: false,
   };
 
   render() {
+    const { loading, children, type, onClick, disabled } = this.props;
+
     return (
       <button
-        type={this.props.type}
+        type={type}
         className={styles.button}
-        onClick={this.props.onClick}
+        onClick={onClick}
+        disabled={disabled || loading}
       >
-        {this.props.children}
+        {loading && <div className={`${styles.loading}`} />}
+        {children}
       </button>
     );
   }

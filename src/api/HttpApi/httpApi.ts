@@ -32,8 +32,16 @@ class HttpClient {
     return undefined;
   }
 
-  protected get(endpoint: string, options = {}) {
-    return this.fetchJSON(endpoint, {
+  protected get(endpoint: string, options: RequestInit = {}, query?: Record<string, string>) {
+    const url = query
+      ? endpoint +
+        '?' +
+        new URLSearchParams({
+          ...query,
+        })
+      : endpoint;
+
+    return this.fetchJSON(url, {
       ...options,
       method: 'GET',
     });

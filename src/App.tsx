@@ -4,13 +4,27 @@ import Form from './views/Components/Form/Form';
 import Input from './views/Elements/Input/Input';
 import Button from './views/Elements/Button/Button';
 import PokemonApi from './api/modules/Pokemon/Pokemon';
+import { PokeCard } from './api/modules/Pokemon/types';
 
 type Props = Record<string, never>;
 
-export class App extends Component<Props> {
+interface State {
+  searchText: string;
+  data: PokeCard[];
+  isLoading: boolean;
+}
+
+export class App extends Component<Props, State> {
   private pokemonApi: PokemonApi;
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      searchText: '',
+      data: [],
+      isLoading: false,
+    };
+
     this.pokemonApi = new PokemonApi({
       baseURL: 'https://api.pokemontcg.io/v2',
       headers: {
@@ -20,9 +34,20 @@ export class App extends Component<Props> {
     });
   }
 
-  public componentDidMount(): void {
-    // this.pokemonApi.get('/cards');
-    this.pokemonApi.pokemons.get();
+  private searchPokemon() {
+    const { searchText } = this.state;
+
+    if (!searchText.trim().length) {
+      return;
+    }
+
+    this.setState({ isLoading: true });
+
+    this.pokemonApi.pokemons
+      .get({
+        q: `name:${searchText.trim()}`,
+      })
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   public render() {
@@ -32,15 +57,21 @@ export class App extends Component<Props> {
           <Form
             handleSubmit={(e) => {
               e.preventDefault();
-              console.log(e);
+              this.searchPokemon();
             }}
           >
             <Input
               placeholder="Search"
-              onChange={() => null}
-              value=""
+              onChange={(e) => this.setState({ searchText: e.target.value })}
+              value={this.state.searchText}
+              autoFocus
             />
-            <Button>Найти</Button>
+            <Button
+              type="submit"
+              loading={this.state.isLoading}
+            >
+              Get Pokemons
+            </Button>
           </Form>
         </Header>
       </div>
