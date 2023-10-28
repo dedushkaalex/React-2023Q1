@@ -1,13 +1,12 @@
-import { Component, HTMLAttributes } from 'react';
+import { Component, HTMLAttributes, PropsWithChildren } from 'react';
 import styles from './Button.module.css';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
-  title: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
 }
 
-class Button extends Component<Props, Record<string, never>> {
+class Button extends Component<PropsWithChildren<Props>, Record<string, never>> {
   constructor(props: Props) {
     super(props);
   }
@@ -23,7 +22,7 @@ class Button extends Component<Props, Record<string, never>> {
         className={styles.button}
         onClick={this.props.onClick}
       >
-        {this.props.title}
+        {this.props.children}
       </button>
     );
   }

@@ -41,3 +41,9 @@ body {
   justify-content: space-between;
   gap: 15px;
 }
+
+form {
+  display: flex;
+  justify-content: center;
+  column-gap: 15px;
+}
