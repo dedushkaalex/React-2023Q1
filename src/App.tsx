@@ -63,9 +63,9 @@ export class App extends Component<Props, State> {
         q: searchValue ? `name:${searchValue.trim()}*` : '',
       })
       .then((data: FetchPokemonResponse) => {
-        this.setState({ data: data.data });
+        this.setState({ data: data?.data });
       })
-      .catch(() => null)
+      // .catch(() => null)
       .finally(() => this.setState({ isLoading: false }));
   }
 

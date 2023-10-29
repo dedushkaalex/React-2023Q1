@@ -17,17 +17,22 @@ class PokemonList extends React.Component<Props, State> {
     super(props);
   }
   render() {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { data, isLoading } = this.props;
     return (
       <div className={`${styles.content} container`}>
-        {data.map((card) => (
-          <PokemonCard
-            key={card.id}
-            data={card}
-          />
-        ))}
-        {isLoading && <Loader />}
+        {!isLoading && data.length === 0 && (
+          <h2 className={styles.data__empty}>Data is empty...</h2>
+        )}
+        {!isLoading ? (
+          data.map((card) => (
+            <PokemonCard
+              key={card.id}
+              data={card}
+            />
+          ))
+        ) : (
+          <Loader />
+        )}
       </div>
     );
   }

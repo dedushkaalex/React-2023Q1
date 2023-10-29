@@ -1,0 +1,13 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.error h1 {
+  font-size: 50px;
+  color: #ec6a6a;
+}
