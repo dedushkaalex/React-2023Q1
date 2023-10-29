@@ -17,7 +17,9 @@
   height: 100%;
   object-fit: cover;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .wrapper {
@@ -28,7 +30,9 @@
   z-index: -1;
   background: #000;
   border-radius: 30px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .text__content {
@@ -50,7 +54,7 @@
   width: 50%;
 }
 
-.logo>img {
+.logo > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -92,7 +96,9 @@
   gap: 10px 0;
 }
 
-.text__content ul > .damage, .weakness, .retreat {
+.text__content ul > .damage,
+.weakness,
+.retreat {
   display: flex;
   align-items: center;
   gap: 0 10px;

@@ -10,4 +10,8 @@
   top: 50%;
   left: 50%;
 }
-@keyframes l1 {to{transform: rotate(.5turn)}}
+@keyframes l1 {
+  to {
+    transform: rotate(0.5turn);
+  }
+}

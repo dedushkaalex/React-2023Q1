@@ -132,3 +132,11 @@ export interface PokeCard {
   tcgplayer?: TCGPlayer;
   cardmarket?: Cardmarket;
 }
+
+export interface FetchPokemonResponse {
+  data: PokeCard[];
+  page: number;
+  pageSize: number;
+  count: number;
+  totalCount: number;
+}

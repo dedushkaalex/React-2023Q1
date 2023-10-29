@@ -4,7 +4,7 @@ import Form from './views/Components/Form/Form';
 import Input from './views/Elements/Input/Input';
 import Button from './views/Elements/Button/Button';
 import PokemonApi from './api/modules/Pokemon/Pokemon';
-import { PokeCard } from './api/modules/Pokemon/types';
+import { FetchPokemonResponse, PokeCard } from './api/modules/Pokemon/types';
 import { LOCAL_STORAGE_POKEMON_SEARCH_QUERY } from './utils/constants/LocalStorage';
 import PokemonList from './views/Containers/PokemonList/PokemonList';
 
@@ -45,19 +45,27 @@ export class App extends Component<Props, State> {
       this.setState({
         searchText: this.localStorageSearchText,
       });
+      this.getFetchPokemons(this.localStorageSearchText);
+    } else {
+      this.getFetchPokemons('');
     }
   }
 
-  private getFetchPokemons(searchValue: string) {
+  componentDidUpdate(): void {
+    this.localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
+  }
+
+  //TODO: Модифицировать в следующем таске
+  private getFetchPokemons(searchValue?: string) {
     this.pokemonApi.pokemons
       .get({
         pageSize: '10',
-        q: `name:${searchValue.trim()}`,
+        q: searchValue ? `name:${searchValue.trim()}*` : '',
       })
-      .then((data) => {
-        console.log(data);
+      .then((data: FetchPokemonResponse) => {
         this.setState({ data: data.data });
       })
+      .catch(() => null)
       .finally(() => this.setState({ isLoading: false }));
   }
 
@@ -68,11 +76,8 @@ export class App extends Component<Props, State> {
       return;
     }
 
-    this.setState({ isLoading: true });
-
-    if (this.localStorageSearchText && this.localStorageSearchText.length > 0) {
-      this.getFetchPokemons(this.localStorageSearchText);
-    } else {
+    if (searchText.trim() !== this.localStorageSearchText) {
+      this.setState({ isLoading: true });
       this.getFetchPokemons(searchText);
       localStorage.setItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY, searchText.trim());
     }

@@ -20,14 +20,16 @@ class HttpClient {
   }
 
   private async fetchJSON(endpoint: string, options: Options) {
-    const res = await fetch(this.baseUrl + endpoint, {
-      ...options,
-      headers: this.headers,
-    });
+    try {
+      const res = await fetch(this.baseUrl + endpoint, {
+        ...options,
+        headers: this.headers,
+      });
 
-    if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) throw new Error(res.statusText);
 
-    if (options.parseResponse !== false && res.status !== 204) return res.json();
+      if (options.parseResponse !== false && res.status !== 204) return res.json();
+    } catch {}
 
     return undefined;
   }
