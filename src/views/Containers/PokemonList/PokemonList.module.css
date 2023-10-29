@@ -1,0 +1,15 @@
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.data__empty {
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+}

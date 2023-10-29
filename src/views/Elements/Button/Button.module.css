@@ -1,0 +1,62 @@
+.button {
+  font-family: inherit;
+  padding: 7px 12px;
+  font-weight: bold;
+  background: transparent;
+  border: 1px solid #ffffff;
+  border-radius: 6px;
+  color: #fff;
+  transition: 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border 0.3s,
+    opacity 0.3s;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.button:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.button:disabled {
+  cursor: default;
+  background-color: rgba(85, 80, 80, 0.2);
+  border-color: rgba(85, 80, 80, 0.2);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.button > span {
+  display: inline-block;
+}
+
+.button.button:active:not(:disabled) {
+  transition: none;
+  background-color: #fff;
+  color: #000;
+}
+
+.loading {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  animation: loader 1s ease infinite;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0turn);
+  }
+
+  100% {
+    transform: rotate(1turn);
+  }
+}
