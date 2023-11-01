@@ -1,10 +1,10 @@
 import { FC } from 'react';
 
 import { PokeCard } from '@api/modules/Pokemon/types';
-import Loader from '@views/Components/Loader/Loader';
+import { Loader } from '@views/Components/Loader';
 
 import styles from './PokemonList.module.css';
-import { PokemonCard } from './components/PokemonCard/PokemonCard';
+import { PokemonCard } from './components/PokemonCard';
 
 interface PokemonListProps {
   data: PokeCard[];

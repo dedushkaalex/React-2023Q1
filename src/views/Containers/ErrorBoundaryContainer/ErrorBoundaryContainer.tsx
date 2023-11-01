@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '@views/Elements/Button/Button';
+import { Button } from '@views/Elements/Button';
 
 import styles from './ErrorBoundary.module.css';
 

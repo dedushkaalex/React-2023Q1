@@ -1,4 +1,5 @@
-import HttpClient, { HttpClientOptions } from '../../HttpApi/httpApi';
+import { HttpClientOptions } from '@api/HttpApi';
+import HttpClient from '@api/HttpApi/httpApi';
 
 export class PokemonApi extends HttpClient {
   protected baseURL = '';
@@ -16,5 +17,3 @@ export class PokemonApi extends HttpClient {
     };
   }
 }
-
-export default PokemonApi;
