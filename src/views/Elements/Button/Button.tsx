@@ -1,4 +1,4 @@
-import { Component, HTMLAttributes, PropsWithChildren } from 'react';
+import { FC, HTMLAttributes, PropsWithChildren } from 'react';
 import styles from './Button.module.css';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
@@ -8,32 +8,22 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   disabled?: boolean;
 }
 
-class Button extends Component<PropsWithChildren<Props>, Record<string, never>> {
-  constructor(props: Props) {
-    super(props);
-  }
-
-  static defaultProps: Pick<Props, 'type' | 'loading' | 'disabled'> = {
-    type: 'button',
-    loading: false,
-    disabled: false,
-  };
-
-  render() {
-    const { loading, children, type, onClick, disabled } = this.props;
-
-    return (
-      <button
-        type={type}
-        className={styles.button}
-        onClick={onClick}
-        disabled={disabled || loading}
-      >
-        {loading && <div className={`${styles.loading}`} />}
-        {children}
-      </button>
-    );
-  }
-}
-
-export default Button;
+export const Button: FC<PropsWithChildren<Props>> = ({
+  type = 'button',
+  loading = false,
+  disabled = false,
+  onClick,
+  children,
+}) => {
+  return (
+    <button
+      type={type}
+      className={styles.button}
+      onClick={onClick}
+      disabled={disabled || loading}
+    >
+      {loading && <div className={`${styles.loading}`} />}
+      {children}
+    </button>
+  );
+};
