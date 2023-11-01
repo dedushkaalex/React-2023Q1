@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import { FC } from 'react';
 
 import styles from './PokemonCard.module.css';
 import { PokeCard } from '../../../../../api/modules/Pokemon/types';
 
-interface Props {
+interface PokemonCardProps {
   data: PokeCard;
 }
 
@@ -121,98 +121,91 @@ const mock = {
   },
 };
 
-class PokemonCard extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-  }
-  render() {
-    const { set, abilities, attacks, hp, retreatCost, weaknesses, types, images } = this.props.data;
-    return (
-      <div className={styles.pokemon__card}>
-        <div className={styles.wrapper}>
-          <img
-            src={images.large}
-            className={styles['cover-image']}
-          />
-        </div>
-
-        <div className={styles.logo}>
-          <img
-            src={set.images.logo}
-            alt=""
-          />
-        </div>
-
-        <div className={styles.hp}>
-          <span className={styles.hp__title}>HP:</span>
-          <img
-            src="/pokeCardImg/attack.png"
-            width={30}
-            height={30}
-            alt=""
-          />
-          <span className={styles.hp__quantity}>{hp}</span>
-        </div>
-        <div className={styles.text__content}>
-          <ul>
-            {attacks && attacks.length > 0 && (
-              <>
-                <li>
-                  Name: <span>{attacks[0].name}</span>
-                </li>
-                <li className={styles.damage}>
-                  Damage:
-                  <img
-                    src="/pokeCardImg/attack.png"
-                    width={30}
-                    height={30}
-                    alt=""
-                  />
-                  <span>{attacks[0].damage}</span>
-                </li>
-              </>
-            )}
-
-            {weaknesses && weaknesses.length > 0 && (
-              <li className={styles.weakness}>
-                Weakness:
-                <img
-                  src="/pokeCardImg/weakness.png"
-                  width={30}
-                  height={30}
-                  alt=""
-                />
-                <span>x4</span>
-              </li>
-            )}
-            {retreatCost && retreatCost.length > 0 && (
-              <li className={styles.retreat}>
-                Retreat Cost:
-                <img
-                  src="/pokeCardImg/retreatCost.png"
-                  width={30}
-                  height={30}
-                  alt=""
-                />
-                <img
-                  src="/pokeCardImg/retreatCost.png"
-                  width={30}
-                  height={30}
-                  alt=""
-                />
-                <img
-                  src="/pokeCardImg/retreatCost.png"
-                  width={30}
-                  height={30}
-                  alt=""
-                />
-              </li>
-            )}
-          </ul>
-        </div>
+export const PokemonCard: FC<PokemonCardProps> = ({ data }) => {
+  const { set, abilities, attacks, hp, retreatCost, weaknesses, types, images } = data;
+  return (
+    <div className={styles.pokemon__card}>
+      <div className={styles.wrapper}>
+        <img
+          src={images.large}
+          className={styles['cover-image']}
+        />
       </div>
-    );
-  }
-}
 
-export default PokemonCard;
+      <div className={styles.logo}>
+        <img
+          src={set.images.logo}
+          alt=""
+        />
+      </div>
+
+      <div className={styles.hp}>
+        <span className={styles.hp__title}>HP:</span>
+        <img
+          src="/pokeCardImg/attack.png"
+          width={30}
+          height={30}
+          alt=""
+        />
+        <span className={styles.hp__quantity}>{hp}</span>
+      </div>
+      <div className={styles.text__content}>
+        <ul>
+          {attacks && attacks.length > 0 && (
+            <>
+              <li>
+                Name: <span>{attacks[0].name}</span>
+              </li>
+              <li className={styles.damage}>
+                Damage:
+                <img
+                  src="/pokeCardImg/attack.png"
+                  width={30}
+                  height={30}
+                  alt=""
+                />
+                <span>{attacks[0].damage}</span>
+              </li>
+            </>
+          )}
+
+          {weaknesses && weaknesses.length > 0 && (
+            <li className={styles.weakness}>
+              Weakness:
+              <img
+                src="/pokeCardImg/weakness.png"
+                width={30}
+                height={30}
+                alt=""
+              />
+              <span>x4</span>
+            </li>
+          )}
+          {retreatCost && retreatCost.length > 0 && (
+            <li className={styles.retreat}>
+              Retreat Cost:
+              <img
+                src="/pokeCardImg/retreatCost.png"
+                width={30}
+                height={30}
+                alt=""
+              />
+              <img
+                src="/pokeCardImg/retreatCost.png"
+                width={30}
+                height={30}
+                alt=""
+              />
+              <img
+                src="/pokeCardImg/retreatCost.png"
+                width={30}
+                height={30}
+                alt=""
+              />
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+  );
+};
