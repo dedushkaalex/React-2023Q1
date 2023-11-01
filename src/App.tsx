@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './views/Components/Header/Header';
 import Form from './views/Components/Form/Form';
 import { Input } from './views/Elements/Input/Input';
@@ -7,113 +7,88 @@ import PokemonApi from './api/modules/Pokemon/Pokemon';
 import { FetchPokemonResponse, PokeCard } from './api/modules/Pokemon/types';
 import { LOCAL_STORAGE_POKEMON_SEARCH_QUERY } from './utils/constants/LocalStorage';
 import { PokemonList } from './views/Containers/PokemonList/PokemonList';
+const pokemonApi = new PokemonApi({
+  baseURL: 'https://api.pokemontcg.io/v2',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Api-Key': '6024987a-904e-4cc3-965d-4eb7a26b3684',
+  },
+});
 
-type Props = Record<string, never>;
+export const App = () => {
+  const [searchText, setSearchText] = useState('');
+  const [dataPokemons, setDataPokemons] = useState<PokeCard[] | []>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-interface State {
-  searchText: string;
-  data: PokeCard[];
-  isLoading: boolean;
-}
+  useEffect(() => {
+    const localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
 
-export class App extends Component<Props, State> {
-  private pokemonApi: PokemonApi;
-  private localStorageSearchText: string | null;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      searchText: '',
-      data: [],
-      isLoading: false,
-    };
-
-    this.pokemonApi = new PokemonApi({
-      baseURL: 'https://api.pokemontcg.io/v2',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Api-Key': '6024987a-904e-4cc3-965d-4eb7a26b3684',
-      },
-    });
-
-    this.localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
-  }
-
-  componentDidMount(): void {
-    if (this.localStorageSearchText && this.localStorageSearchText.length > 0) {
-      this.setState({
-        searchText: this.localStorageSearchText,
-      });
-      this.getFetchPokemons(this.localStorageSearchText);
+    if (localStorageSearchText && localStorageSearchText.length > 0) {
+      setSearchText(localStorageSearchText);
+      getFetchPokemons(localStorageSearchText);
     } else {
-      this.getFetchPokemons('');
+      getFetchPokemons('');
     }
-  }
+  }, []);
 
-  componentDidUpdate(): void {
-    this.localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
-  }
+  const localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
 
-  //TODO: Модифицировать в следующем таске
-  private getFetchPokemons(searchValue?: string) {
-    this.pokemonApi.pokemons
+  const getFetchPokemons = (searchValue?: string) => {
+    setIsLoading(true);
+    pokemonApi.pokemons
       .get({
         pageSize: '10',
         q: searchValue ? `name:${searchValue.trim()}*` : '',
       })
       .then((data: FetchPokemonResponse) => {
-        this.setState({ data: data?.data });
+        setDataPokemons(data.data);
       })
       // .catch(() => null)
-      .finally(() => this.setState({ isLoading: false }));
-  }
+      .finally(() => setIsLoading(false));
+  };
 
-  private searchPokemon() {
-    const { searchText } = this.state;
-
+  const searchPokemon = () => {
     if (!searchText.trim().length) {
       return;
     }
 
-    if (searchText.trim() !== this.localStorageSearchText) {
-      this.setState({ isLoading: true });
-      this.getFetchPokemons(searchText);
+    if (searchText.trim() !== localStorageSearchText) {
+      getFetchPokemons(searchText);
       localStorage.setItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY, searchText.trim());
     }
-  }
+  };
 
-  public render() {
-    return (
-      <div className="app">
-        <Header>
-          <Form
-            handleSubmit={(e) => {
-              e.preventDefault();
-              this.searchPokemon();
-            }}
+  // componentDidUpdate(): void {
+  //   this.localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
+  // }
+
+  return (
+    <div className="app">
+      <Header>
+        <Form
+          handleSubmit={(e) => {
+            e.preventDefault();
+            searchPokemon();
+          }}
+        >
+          <Input
+            placeholder="Search"
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
+            autoFocus
+          />
+          <Button
+            type="submit"
+            loading={isLoading}
           >
-            <Input
-              placeholder="Search"
-              onChange={(e) => this.setState({ searchText: e.target.value })}
-              value={this.state.searchText}
-              autoFocus
-            />
-            <Button
-              type="submit"
-              loading={this.state.isLoading}
-            >
-              Get Pokemons
-            </Button>
-          </Form>
-        </Header>
-        <PokemonList
-          data={this.state.data}
-          isLoading={this.state.isLoading}
-        />
-      </div>
-    );
-  }
-}
-
-export default App;
+            Get Pokemons
+          </Button>
+        </Form>
+      </Header>
+      <PokemonList
+        data={dataPokemons}
+        isLoading={isLoading}
+      />
+    </div>
+  );
+};
