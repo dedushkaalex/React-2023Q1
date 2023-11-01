@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react';
 
-import styles from './PokemonCard.module.css';
 import { PokeCard } from '../../../../../api/modules/Pokemon/types';
+import styles from './PokemonCard.module.css';
 
 interface PokemonCardProps {
   data: PokeCard;

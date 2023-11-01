@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import Header from './views/Components/Header/Header';
-import Form from './views/Components/Form/Form';
-import { Input } from './views/Elements/Input/Input';
-import { Button } from './views/Elements/Button/Button';
+
 import PokemonApi from './api/modules/Pokemon/Pokemon';
 import { FetchPokemonResponse, PokeCard } from './api/modules/Pokemon/types';
 import { LOCAL_STORAGE_POKEMON_SEARCH_QUERY } from './utils/constants/LocalStorage';
+import Form from './views/Components/Form/Form';
+import Header from './views/Components/Header/Header';
 import { PokemonList } from './views/Containers/PokemonList/PokemonList';
+import { Button } from './views/Elements/Button/Button';
+import { Input } from './views/Elements/Input/Input';
+
 const pokemonApi = new PokemonApi({
   baseURL: 'https://api.pokemontcg.io/v2',
   headers: {
@@ -41,7 +43,7 @@ export const App = () => {
         q: searchValue ? `name:${searchValue.trim()}*` : '',
       })
       .then((data: FetchPokemonResponse) => {
-        setDataPokemons(data.data);
+        setDataPokemons(data?.data);
       })
       // .catch(() => null)
       .finally(() => setIsLoading(false));

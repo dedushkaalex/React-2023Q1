@@ -45,6 +45,13 @@
     "react": {
       "pragma": "React",
       "version": "detect"
-    }
-  }
+    },
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src"]]
+      }
+    },
+    "extensions": [".ts"]
+  },
+  "ignorePatterns": ["vite.config.ts"]
 }

@@ -1,4 +1,5 @@
 import { FC, HTMLAttributes, PropsWithChildren } from 'react';
+
 import styles from './Button.module.css';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {

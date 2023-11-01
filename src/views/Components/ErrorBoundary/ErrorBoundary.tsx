@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+
 import ErrorBoundaryContainer from '../../Containers/ErrorBoundaryContainer/ErrorBoundaryContainer';
 
 interface State {
