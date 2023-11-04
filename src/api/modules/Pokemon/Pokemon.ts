@@ -1,12 +1,11 @@
 import { HttpClientOptions } from '@api/HttpApi';
 import HttpClient from '@api/HttpApi/httpApi';
 
-export class PokemonApi extends HttpClient {
-  protected baseURL = '';
-  constructor(options: HttpClientOptions) {
+class PokemonApi extends HttpClient {
+  constructor({ baseURL, headers }: HttpClientOptions) {
     super({
-      baseURL: options.baseURL,
-      headers: options.headers,
+      baseURL,
+      headers,
     });
   }
 
@@ -17,3 +16,11 @@ export class PokemonApi extends HttpClient {
     };
   }
 }
+
+export const pokemonApi = new PokemonApi({
+  baseURL: 'https://api.pokemontcg.io/v2',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-Api-Key': '6024987a-904e-4cc3-965d-4eb7a26b3684',
+  },
+});

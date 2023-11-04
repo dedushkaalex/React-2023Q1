@@ -1,14 +1,14 @@
-import { FC, PropsWithChildren } from 'react';
+import { SearchFormPokemon } from '@views/Containers/SearchFormPokemon/SearchFormPokemon';
 
 import styles from './Header.module.css';
 
-export const Header: FC<PropsWithChildren> = ({ children }) => {
+export const Header = () => {
   return (
     <div className={styles.header}>
-      <div className="container">
+      <div className='container'>
         <div className={styles.header__wrapper}>
-          <h1 className="header__logo">PokeWiki</h1>
-          <nav className={styles.nav}>{children}</nav>
+          <h1 className='header__logo'>PokeWiki</h1>
+          <SearchFormPokemon />
         </div>
       </div>
     </div>

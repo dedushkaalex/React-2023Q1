@@ -135,17 +135,17 @@ export const PokemonCard: FC<PokemonCardProps> = ({ data }) => {
       <div className={styles.logo}>
         <img
           src={set.images.logo}
-          alt=""
+          alt=''
         />
       </div>
 
       <div className={styles.hp}>
         <span className={styles.hp__title}>HP:</span>
         <img
-          src="/pokeCardImg/attack.png"
+          src='/pokeCardImg/attack.png'
           width={30}
           height={30}
-          alt=""
+          alt=''
         />
         <span className={styles.hp__quantity}>{hp}</span>
       </div>
@@ -159,10 +159,10 @@ export const PokemonCard: FC<PokemonCardProps> = ({ data }) => {
               <li className={styles.damage}>
                 Damage:
                 <img
-                  src="/pokeCardImg/attack.png"
+                  src='/pokeCardImg/attack.png'
                   width={30}
                   height={30}
-                  alt=""
+                  alt=''
                 />
                 <span>{attacks[0].damage}</span>
               </li>
@@ -173,10 +173,10 @@ export const PokemonCard: FC<PokemonCardProps> = ({ data }) => {
             <li className={styles.weakness}>
               Weakness:
               <img
-                src="/pokeCardImg/weakness.png"
+                src='/pokeCardImg/weakness.png'
                 width={30}
                 height={30}
-                alt=""
+                alt=''
               />
               <span>x4</span>
             </li>
@@ -185,22 +185,22 @@ export const PokemonCard: FC<PokemonCardProps> = ({ data }) => {
             <li className={styles.retreat}>
               Retreat Cost:
               <img
-                src="/pokeCardImg/retreatCost.png"
+                src='/pokeCardImg/retreatCost.png'
                 width={30}
                 height={30}
-                alt=""
+                alt=''
               />
               <img
-                src="/pokeCardImg/retreatCost.png"
+                src='/pokeCardImg/retreatCost.png'
                 width={30}
                 height={30}
-                alt=""
+                alt=''
               />
               <img
-                src="/pokeCardImg/retreatCost.png"
+                src='/pokeCardImg/retreatCost.png'
                 width={30}
                 height={30}
-                alt=""
+                alt=''
               />
             </li>
           )}

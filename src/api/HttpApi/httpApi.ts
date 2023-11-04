@@ -9,12 +9,12 @@ class HttpClient {
   protected baseUrl;
   protected headers: Headers;
 
-  constructor(options: HttpClientOptions) {
-    this.baseUrl = options.baseURL;
-    this.headers = new Headers(options.headers);
+  constructor({ baseURL, headers }: HttpClientOptions) {
+    this.baseUrl = baseURL;
+    this.headers = new Headers(headers);
   }
 
-  public setHeaders(key: string, value: string) {
+  public setHeaders(key: keyof HeadersInit, value: string) {
     this.headers.set(key, value);
     return this;
   }
@@ -26,9 +26,13 @@ class HttpClient {
         headers: this.headers,
       });
 
-      if (!res.ok) throw new Error(res.statusText);
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
 
-      if (options.parseResponse !== false && res.status !== 204) return res.json();
+      if (options.parseResponse !== false && res.status !== 204) {
+        return res.json();
+      }
     } catch {}
 
     return undefined;

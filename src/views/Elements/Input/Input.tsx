@@ -12,12 +12,12 @@ export const Input: FC<InputProps> = ({ placeholder = '', value, onChange, ...pr
   return (
     <label className={styles.field}>
       <input
-        type="text"
-        id="search"
+        type='text'
+        id='search'
         className={styles.input__field}
-        autoComplete="off"
+        autoComplete='off'
         {...props}
-        placeholder=""
+        placeholder=''
         onChange={onChange}
         value={value}
       />

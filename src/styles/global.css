@@ -47,3 +47,30 @@ form {
   justify-content: center;
   column-gap: 15px;
 }
+
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+  width: calc(100% - 400px);
+}
+
+.right {
+  width: 400px;
+  right: 0;
+  background-color: red;
+}
+
+.main.active .left {
+  width: 100%;
+}
+
+.main.active .right {
+  width: 0;
+}
