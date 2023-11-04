@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { localStorageWrapper as storage } from '@api/LocalStorageApi';
 import { PokemonApi } from '@api/modules/Pokemon';
 import { FetchPokemonResponse, PokeCard } from '@api/modules/Pokemon/types';
 import { Form } from '@views/Components/Form';
@@ -19,22 +20,15 @@ const pokemonApi = new PokemonApi({
 });
 
 export const App = () => {
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState(
+    () => storage.get<string>(LOCAL_STORAGE_POKEMON_SEARCH_QUERY) || ''
+  );
   const [dataPokemons, setDataPokemons] = useState<PokeCard[] | []>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
-
-    if (localStorageSearchText && localStorageSearchText.length > 0) {
-      setSearchText(localStorageSearchText);
-      getFetchPokemons(localStorageSearchText);
-    } else {
-      getFetchPokemons('');
-    }
+    getFetchPokemons(searchText);
   }, []);
-
-  const localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
 
   const getFetchPokemons = (searchValue?: string) => {
     setIsLoading(true);
@@ -55,15 +49,11 @@ export const App = () => {
       return;
     }
 
-    if (searchText.trim() !== localStorageSearchText) {
+    if (searchText.trim() !== storage.get<string>(LOCAL_STORAGE_POKEMON_SEARCH_QUERY)) {
       getFetchPokemons(searchText);
-      localStorage.setItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY, searchText.trim());
+      storage.set(LOCAL_STORAGE_POKEMON_SEARCH_QUERY, searchText.trim());
     }
   };
-
-  // componentDidUpdate(): void {
-  //   this.localStorageSearchText = localStorage.getItem(LOCAL_STORAGE_POKEMON_SEARCH_QUERY);
-  // }
 
   return (
     <div className="app">
