@@ -1,35 +1,28 @@
-// import { FC, useContext } from 'react';
+import { PokeCard } from '@api/modules/Pokemon/types';
+import { Loader } from '@views/Components/Loader';
 
-// import { PokemonDataContext } from '@/context/pokemon/PokemonContext';
+import styles from './PokemonList.module.css';
+import { PokemonCard } from './components/PokemonCard';
 
-// // import { PokeCard } from '@api/modules/Pokemon/types';
-// import { Loader } from '@views/Components/Loader';
+interface PokemonListProps {
+  data: PokeCard[];
+  isLoading: boolean;
+}
 
-// import styles from './PokemonList.module.css';
-// import { PokemonCard } from './components/PokemonCard';
-
-// // interface PokemonListProps {
-// //   data: PokeCard[];
-// //   isLoading: boolean;
-// // }
-
-// export const PokemonList: FC = () => {
-//   const { isLoading, pokemonData } = useContext(PokemonDataContext);
-//   return (
-//     <div className={`${styles.content} container`}>
-//       {!isLoading && pokemonData.length === 0 && (
-//         <h2 className={styles.data__empty}>Data is empty...</h2>
-//       )}
-//       {!isLoading ? (
-//         pokemonData.map((card) => (
-//           <PokemonCard
-//             key={card.id}
-//             data={card}
-//           />
-//         ))
-//       ) : (
-//         <Loader />
-//       )}
-//     </div>
-//   );
-// };
+export const PokemonList = ({ data, isLoading }: PokemonListProps) => {
+  return (
+    <div className={`${styles.content} container`}>
+      {!isLoading && data.length === 0 && <h2 className={styles.data__empty}>Data is empty...</h2>}
+      {!isLoading ? (
+        data.map((card) => (
+          <PokemonCard
+            key={card.id}
+            data={card}
+          />
+        ))
+      ) : (
+        <Loader />
+      )}
+    </div>
+  );
+};

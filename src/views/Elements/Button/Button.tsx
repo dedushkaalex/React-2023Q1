@@ -7,6 +7,7 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
   type?: 'button' | 'submit' | 'reset';
   loading?: boolean;
   disabled?: boolean;
+  className?: string;
 }
 
 export const Button: FC<PropsWithChildren<Props>> = ({
@@ -15,11 +16,12 @@ export const Button: FC<PropsWithChildren<Props>> = ({
   disabled = false,
   onClick,
   children,
+  className,
 }) => {
   return (
     <button
       type={type}
-      className={styles.button}
+      className={`${styles.button} ${className}`}
       onClick={onClick}
       disabled={disabled || loading}
     >

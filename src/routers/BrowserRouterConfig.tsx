@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <DetailCardPage />,
-        path: 'card-view',
+        index: true,
       },
     ],
   },

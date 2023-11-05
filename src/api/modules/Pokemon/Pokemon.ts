@@ -13,6 +13,8 @@ class PokemonApi extends HttpClient {
     return {
       get: (queryParams?: Record<string, string>, options: RequestInit = {}) =>
         this.get('/cards', options, queryParams),
+      getById: (id: string, queryParams?: Record<string, string>, options: RequestInit = {}) =>
+        this.get(`/cards/${id}`, options, queryParams),
     };
   }
 }

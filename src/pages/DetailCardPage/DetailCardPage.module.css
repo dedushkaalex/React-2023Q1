@@ -1,0 +1,26 @@
+.wrapper img {
+  width: 100%;
+  object-fit: cover;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 550px;
+  padding: 10px 14px;
+  background-color: rgb(240, 244, 240);
+  transform: translateX(1000%);
+  transition: transform 0.5s;
+}
+
+.wrapper.open {
+  transform: translateX(0);
+}
+
+.close {
+  border: 1px solid #000;
+  color: #000;
+  margin-bottom: 15px;
+}

@@ -1,5 +1,3 @@
-import { SearchFormPokemon } from '@views/Containers/SearchFormPokemon/SearchFormPokemon';
-
 import styles from './Header.module.css';
 
 export const Header = () => {
@@ -7,12 +5,9 @@ export const Header = () => {
     <div className={styles.header}>
       <div className='container'>
         <div className={styles.header__wrapper}>
-          <h1 className='header__logo'>PokeWiki</h1>
-          <SearchFormPokemon />
+          <h1>PokeWiki</h1>
         </div>
       </div>
     </div>
   );
 };
-
-export default Header;

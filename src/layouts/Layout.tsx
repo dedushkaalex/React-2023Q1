@@ -1,21 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Outlet } from 'react-router-dom';
+import { Outlet, useSearchParams } from 'react-router-dom';
+
+import { HomePage } from '@/pages/HomePage/HomePage';
 
 import { Header } from '@views/Components/Header';
-import { PokemonList } from '@views/Containers/PokemonList';
 
 export const Layout = () => {
+  const [params] = useSearchParams();
   return (
     <div className={'app'}>
       <Header />
 
       <main className={'main'}>
-        <div className={'split left'}>
-          <PokemonList />
+        <div className={`left ${params.get('detail') ? 'open' : ''}`}>
+          <HomePage />
         </div>
-        <div className={'split right'}>
-          <Outlet />
-        </div>
+        <Outlet />
+        {/* <div className={'right'}></div> */}
       </main>
     </div>
   );
