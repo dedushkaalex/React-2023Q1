@@ -21,7 +21,7 @@ export const PokemonList = ({ data, isLoading }: PokemonListProps) => {
           />
         ))
       ) : (
-        <Loader />
+        <Loader className={styles.loader} />
       )}
     </div>
   );

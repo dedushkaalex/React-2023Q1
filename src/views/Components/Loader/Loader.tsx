@@ -1,9 +1,12 @@
 import React from 'react';
 
+import classnames from 'classnames';
+
 import styles from './Loader.module.css';
 
-export class Loader extends React.PureComponent {
-  render() {
-    return <div className={styles.loader}></div>;
-  }
-}
+type Props = {
+  className?: string;
+};
+export const Loader = ({ className }: Props) => {
+  return <div className={classnames(styles.loader, className)}></div>;
+};
