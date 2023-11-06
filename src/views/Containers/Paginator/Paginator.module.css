@@ -1,148 +1,59 @@
-.wrapper {
-  position: relative;
-  width: 300px;
+.pagination-container {
+  display: flex;
+  list-style-type: none;
 }
-
-.wrapper button {
-  -webkit-appearance: none;
-  background: transparent;
-  border: 0;
-  outline: 0;
+.pagination-container .pagination-item {
+  padding: 0 12px;
+  height: 32px;
+  text-align: center;
+  margin: auto 4px;
+  color: #fff;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  letter-spacing: 0.01071em;
+  border-radius: 16px;
+  line-height: 1.43;
+  font-size: 13px;
+  min-width: 32px;
 }
-
-.paginate {
-  position: relative;
-  margin: 10px;
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  transform: translate3d(0, 0, 0);
-  position: absolute;
-  top: 50%;
-  margin-top: -20px;
-  -webkit-filter: drop-shadow(0 2px 0px rgba(0, 0, 0, 0.2));
-}
-
-.paginate i {
-  position: absolute;
-  top: 40%;
-  left: 0;
-  width: 50px;
-  height: 5px;
-  border-radius: 2.5px;
-  background: #fff;
-  transition: all 0.15s ease;
-}
-
-.paginate.left {
-  right: 58%;
-}
-
-.paginate.left i {
-  transform-origin: 0% 50%;
-}
-
-.paginate.left i:first-child {
-  transform: translate(0, -1px) rotate(40deg);
-}
-
-.paginate.left i:last-child {
-  transform: translate(0, 1px) rotate(-40deg);
-}
-
-.paginate.left:hover i:first-child {
-  transform: translate(0, -1px) rotate(30deg);
-}
-
-.paginate.left:hover i:last-child {
-  transform: translate(0, 1px) rotate(-30deg);
-}
-
-.paginate.left:active i:first-child {
-  transform: translate(1px, -1px) rotate(25deg);
-}
-
-.paginate.left:active i:last-child {
-  transform: translate(1px, 1px) rotate(-25deg);
-}
-
-.paginate.left[data-state=disabled] i:first-child {
-  transform: translate(-5px, 0) rotate(0deg);
-}
-
-.paginate.left[data-state=disabled] i:last-child {
-  transform: translate(-5px, 0) rotate(0deg);
-}
-
-.paginate.left[data-state=disabled]:hover i:first-child {
-  transform: translate(-5px, 0) rotate(0deg);
-}
-
-.paginate.left[data-state=disabled]:hover i:last-child {
-  transform: translate(-5px, 0) rotate(0deg);
-}
-
-.paginate.right {
-  left: 58%;
-}
-
-.paginate.right i {
-  transform-origin: 100% 50%;
-}
-
-.paginate.right i:first-child {
-  transform: translate(0, 1px) rotate(40deg);
-}
-
-.paginate.right i:last-child {
-  transform: translate(0, -1px) rotate(-40deg);
-}
-
-.paginate.right:hover i:first-child {
-  transform: translate(0, 1px) rotate(30deg);
-}
-
-.paginate.right:hover i:last-child {
-  transform: translate(0, -1px) rotate(-30deg);
-}
-
-.paginate.right:active i:first-child {
-  transform: translate(1px, 1px) rotate(25deg);
-}
-
-.paginate.right:active i:last-child {
-  transform: translate(1px, -1px) rotate(-25deg);
-}
-
-.paginate.right[data-state=disabled] i:first-child {
-  transform: translate(5px, 0) rotate(0deg);
-}
-
-.paginate.right[data-state=disabled] i:last-child {
-  transform: translate(5px, 0) rotate(0deg);
-}
-
-.paginate.right[data-state=disabled]:hover i:first-child {
-  transform: translate(5px, 0) rotate(0deg);
-}
-
-.paginate.right[data-state=disabled]:hover i:last-child {
-  transform: translate(5px, 0) rotate(0deg);
-}
-
-.paginate[data-state=disabled] {
-  opacity: 0.3;
+.pagination-container .pagination-item.dots:hover {
+  background-color: transparent;
   cursor: default;
 }
-
-.counter {
-  text-align: center;
-  position: absolute;
-  width: 100%;
-  top: 50%;
-  margin-top: -15px;
-  font-size: 30px;
-  font-family: Helvetica, sans-serif;
-  text-shadow: 0px 2px 0px rgba(0, 0, 0, 0.2);
-  color: #fff;
+.pagination-container .pagination-item:hover {
+  background-color: rgba(255, 250, 250, 0.04);
+  cursor: pointer;
+}
+.pagination-container .pagination-item.selected {
+  background-color: rgba(245, 242, 242, 0.08);
+}
+.pagination-container .pagination-item .arrow::before {
+  position: relative;
+ /* top: 3pt;
+  Uncomment this to lower the icons as requested in comments*/
+  content: '';
+ /* By using an em scale, the arrows will size with the font */
+  display: inline-block;
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 0.12em solid rgba(255, 255, 255, 0.87);
+  border-top: 0.12em solid rgba(255, 255, 255, 0.87);
+}
+.pagination-container .pagination-item .arrow.left {
+  transform: rotate(-135deg) translate(-50%);
+}
+.pagination-container .pagination-item .arrow.right {
+  transform: rotate(45deg);
+}
+.pagination-container .pagination-item.disabled {
+  pointer-events: none;
+}
+.pagination-container .pagination-item.disabled .arrow::before {
+  border-right: 0.12em solid rgba(255, 255, 255, 0.43);
+  border-top: 0.12em solid rgba(255, 255, 255, 0.43);
+}
+.pagination-container .pagination-item.disabled:hover {
+  background-color: transparent;
+  cursor: default;
 }

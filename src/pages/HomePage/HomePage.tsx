@@ -24,7 +24,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     getFetchPokemons(searchText);
-  }, []);
+  }, [pageParams]);
 
   const getFetchPokemons = (searchValue?: string) => {
     setIsLoading(true);
@@ -63,8 +63,13 @@ export const HomePage = () => {
           isLoading={isLoading}
         />
         <Paginator
-          maxPage={maxPage.current}
+          className={styles.pagination__bar}
           currentPage={Number(pageParams)}
+          totalCount={dataPokemons?.totalCount || 0}
+          onPageChange={(pageNum) => {
+            setSearchParams({ page: String(pageNum) });
+          }}
+          pageSize={10}
         />
       </div>
 
