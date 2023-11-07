@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import cn from 'classnames';
+
 import { pokemonApi } from '@api/modules/Pokemon';
-import { FetchPokemonResponse, PokeCard } from '@api/modules/Pokemon/types';
+import type { FetchPokemonResponse, PokeCard } from '@api/modules/Pokemon/types';
 import { Loader } from '@views/Components/Loader';
 import { Button } from '@views/Elements/Button';
 
@@ -13,14 +15,21 @@ export const DetailCardPage = () => {
   const [data, setData] = useState<PokeCard>();
   const [params, setSearchParams] = useSearchParams();
 
+  const paramsDetail = params.get('detail');
+
   useEffect(() => {
-    getFetchPokemons();
-  }, [params]);
+    if (paramsDetail) {
+      getFetchPokemons();
+    }
+  }, [paramsDetail]);
 
   const getFetchPokemons = () => {
     setIsLoading(true);
+    if (!paramsDetail) {
+      return;
+    }
     pokemonApi.pokemons
-      .getById(params.get('detail') || '')
+      .getById(paramsDetail)
       .then((data: Omit<FetchPokemonResponse, 'data'> & { data: PokeCard }) => {
         if (data) {
           setData(data.data);
@@ -36,7 +45,11 @@ export const DetailCardPage = () => {
   const { abilities, images, name, supertype, rarity } = data;
 
   return (
-    <div className={`${styles.wrapper} ${params.get('detail') ? styles.open : ''}`}>
+    <div
+      className={cn(styles.wrapper, {
+        [styles.open]: paramsDetail,
+      })}
+    >
       <Button
         className={styles.close}
         onClick={() => {
@@ -47,10 +60,13 @@ export const DetailCardPage = () => {
         X
       </Button>
       {!isLoading && images?.large && images && (
-        <img
-          src={images.large}
-          className={styles['cover-image']}
-        />
+        <div className={styles.img__wrapper}>
+          <img
+            src={images.large}
+            className={styles['cover-image']}
+            width={'200px'}
+          />
+        </div>
       )}
       {!isLoading ? (
         <div className={styles.text__content}>
@@ -59,7 +75,6 @@ export const DetailCardPage = () => {
           <p>Rarity: {rarity}</p>
           <ul>
             {abilities &&
-              abilities.length > 0 &&
               abilities.map(({ name, text }, id) => (
                 <li key={id}>
                   <p>{name}</p>

@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import classnames from 'classnames';
+import cn from 'classnames';
 
 import { DOTS, usePagintaion } from '@/hooks/usePagination';
 
@@ -45,21 +45,21 @@ export const Paginator: FC<PaginatorProps> = ({
   const lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul className={classnames(styles['pagination-container'], { [className]: className })}>
+    <ul className={cn(styles['pagination-container'], { [className]: className })}>
       <li
-        className={classnames(styles['pagination-item'], {
+        className={cn(styles['pagination-item'], {
           [styles.disabled]: currentPage === 1,
         })}
         onClick={onPrevious}
       >
-        <div className={classnames(styles.arrow, styles.left)} />
+        <div className={cn(styles.arrow, styles.left)} />
       </li>
       {paginationRange &&
         paginationRange.map((pageNumber, index) => {
           if (pageNumber === DOTS) {
             return (
               <li
-                className={classnames(styles['pagination-item'], styles.dots)}
+                className={cn(styles['pagination-item'], styles.dots)}
                 key={index}
               >
                 &#8230;
@@ -69,7 +69,7 @@ export const Paginator: FC<PaginatorProps> = ({
 
           return (
             <li
-              className={classnames(styles['pagination-item'], {
+              className={cn(styles['pagination-item'], {
                 [styles.selected]: pageNumber === currentPage,
               })}
               onClick={() => onPageChange(pageNumber)}
@@ -80,12 +80,12 @@ export const Paginator: FC<PaginatorProps> = ({
           );
         })}
       <li
-        className={classnames(styles['pagination-item'], {
+        className={cn(styles['pagination-item'], {
           [styles.disabled]: currentPage === lastPage,
         })}
         onClick={onNext}
       >
-        <div className={classnames(styles.arrow, styles.right)} />
+        <div className={cn(styles.arrow, styles.right)} />
       </li>
     </ul>
   );

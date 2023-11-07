@@ -1,13 +1,13 @@
 import React from 'react';
 
+import { DOTS } from '@/utils/constants/Pagination';
+
 type Pagination = {
   totalCount: number;
   pageSize: number;
   siblingCount?: number;
   currentPage: number;
 };
-
-export const DOTS = '...';
 
 export function usePagintaion({ totalCount, pageSize, siblingCount = 1, currentPage }: Pagination) {
   const paginationRange = React.useMemo(() => {

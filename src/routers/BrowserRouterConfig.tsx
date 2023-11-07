@@ -1,12 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from '@/layouts/Layout';
-import { DetailCardPage } from '@/pages/DetailCardPage/DetailCardPage';
-import { NotFoundPage } from '@/pages/NotFoundPage';
+import { DetailCardPage, NotFoundPage } from '@/pages';
+
+import { ROUTES } from './routes';
+
+const { ROOT } = ROUTES;
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: ROOT,
     element: <Layout />,
     errorElement: <NotFoundPage />,
     children: [
