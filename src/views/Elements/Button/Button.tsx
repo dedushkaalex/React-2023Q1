@@ -5,7 +5,7 @@ import cn from 'classnames';
 import styles from './Button.module.css';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
   loading?: boolean;
   disabled?: boolean;
