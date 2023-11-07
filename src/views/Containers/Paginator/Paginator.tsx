@@ -2,7 +2,8 @@ import { FC } from 'react';
 
 import cn from 'classnames';
 
-import { DOTS, usePagintaion } from '@/hooks/usePagination';
+import { usePagintaion } from '@/hooks/usePagination';
+import { DOTS } from '@/utils/constants/Pagination';
 
 import styles from './Paginator.module.css';
 
