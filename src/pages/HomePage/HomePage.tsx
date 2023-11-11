@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
+import { usePokemonDispatch } from '@/contexts/pokemon-context';
+import { addPokemons } from '@/reducers/pokemon/actions';
 import { LOCAL_STORAGE_POKEMON_SEARCH_QUERY } from '@/utils/constants/LocalStorage';
 
 import { localStorageWrapper as storage } from '@api/LocalStorageApi';
@@ -19,6 +21,7 @@ export const HomePage = () => {
   const [dataPokemons, setDataPokemons] = useState<FetchPokemonResponse>();
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = usePokemonDispatch();
   const pageParams = searchParams.get('page');
   const maxPage = useRef(1);
 
@@ -36,6 +39,7 @@ export const HomePage = () => {
       })
       .then((data: FetchPokemonResponse) => {
         setDataPokemons(data);
+        dispatch(addPokemons(data.data));
         setSearchParams({ page: String(data.page) });
         maxPage.current = Math.ceil(data.totalCount / data.pageSize);
       })
@@ -73,10 +77,7 @@ export const HomePage = () => {
         />
       </div>
 
-      <PokemonList
-        data={dataPokemons?.data || []}
-        isLoading={isLoading}
-      />
+      <PokemonList isLoading={isLoading} />
     </div>
   );
 };
