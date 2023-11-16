@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { usePokemonDispatch } from '@/contexts/pokemon-context';
+import { useFetch } from '@/hooks/useFetch';
 import { addPokemons } from '@/reducers/pokemon/actions';
 import { LOCAL_STORAGE_POKEMON_SEARCH_QUERY } from '@/utils/constants/LocalStorage';
 
@@ -17,9 +18,18 @@ import styles from './HomePage.module.css';
 export const HomePage = () => {
   const localStorageSearchTextValue = storage.get<string>(LOCAL_STORAGE_POKEMON_SEARCH_QUERY) || '';
 
+  const { loading, error, value } = useFetch<FetchPokemonResponse>(
+    'https://api.pokemontcg.io/v2/cards',
+    {
+      headers: {
+        'X-Api-Key': '6024987a-904e-4cc3-965d-4eb7a26b3684',
+      },
+    }
+  );
+  console.log(error, value, loading);
+
   const [searchText, setSearchText] = useState(localStorageSearchTextValue);
   const [dataPokemons, setDataPokemons] = useState<FetchPokemonResponse>();
-  const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = usePokemonDispatch();
   const pageParams = searchParams.get('page');
@@ -30,7 +40,6 @@ export const HomePage = () => {
   }, [pageParams]);
 
   const getFetchPokemons = (searchValue?: string) => {
-    setIsLoading(true);
     pokemonApi.pokemons
       .get({
         pageSize: '10',
@@ -42,9 +51,8 @@ export const HomePage = () => {
         dispatch(addPokemons(data.data));
         setSearchParams({ page: String(data.page) });
         maxPage.current = Math.ceil(data.totalCount / data.pageSize);
-      })
-      // .catch(() => null)
-      .finally(() => setIsLoading(false));
+      });
+    // .catch(() => null)
   };
 
   const handleSearchPokemon = () => {
@@ -64,7 +72,7 @@ export const HomePage = () => {
           onSearch={handleSearchPokemon}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)}
           value={searchText}
-          isLoading={isLoading}
+          isLoading={loading}
         />
         <Paginator
           className={styles.pagination__bar}
@@ -77,7 +85,7 @@ export const HomePage = () => {
         />
       </div>
 
-      <PokemonList isLoading={isLoading} />
+      <PokemonList isLoading={loading} />
     </div>
   );
 };

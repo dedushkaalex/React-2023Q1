@@ -13,12 +13,14 @@ interface PokemonListProps {
 }
 
 export const PokemonList = ({ isLoading }: PokemonListProps) => {
-  const data = usePokemon();
-  console.log(data);
+  const { data, searchValue } = usePokemon();
+  console.log(data, searchValue);
   return (
     <div className={cn(styles.content, 'container')}>
-      {!isLoading && data.length === 0 && <h2 className={styles.data__empty}>Data is empty...</h2>}
-      {!isLoading ? (
+      {!isLoading && data && data.length === 0 && (
+        <h2 className={styles.data__empty}>Data is empty...</h2>
+      )}
+      {!isLoading && data ? (
         data.map((card) => (
           <PokemonCard
             key={card.id}
