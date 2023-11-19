@@ -1,4 +1,4 @@
-import { PokeCard } from '@api/modules/Pokemon/types';
+import { PokeCard } from '@api/Pokemon/types';
 
 export type PokemonAction = {
   type: string;

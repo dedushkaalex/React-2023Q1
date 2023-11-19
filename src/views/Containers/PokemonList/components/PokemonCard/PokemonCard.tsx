@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import type { PokeCard } from '@api/modules/Pokemon/types';
+import type { PokeCard } from '@api/Pokemon/types';
 import { Button } from '@views/Elements/Button';
 
 import styles from './PokemonCard.module.css';

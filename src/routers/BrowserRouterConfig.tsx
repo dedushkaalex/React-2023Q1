@@ -1,8 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { PokemonProvider } from '@/contexts/pokemon-context';
 import { Layout } from '@/layouts/Layout';
 import { DetailCardPage, NotFoundPage } from '@/pages';
+
+import { pokemonApiSlice } from '@api/Pokemon';
+import { ApiProvider } from '@reduxjs/toolkit/query/react';
 
 import { ROUTES } from './routes';
 
@@ -12,9 +14,9 @@ export const router = createBrowserRouter([
   {
     path: ROOT,
     element: (
-      <PokemonProvider>
+      <ApiProvider api={pokemonApiSlice}>
         <Layout />
-      </PokemonProvider>
+      </ApiProvider>
     ),
     errorElement: <NotFoundPage />,
     children: [

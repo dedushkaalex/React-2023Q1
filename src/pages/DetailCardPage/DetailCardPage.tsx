@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import cn from 'classnames';
 
-import { pokemonApi } from '@api/modules/Pokemon';
-import type { FetchPokemonResponse, PokeCard } from '@api/modules/Pokemon/types';
+import type { FetchPokemonResponse, PokeCard } from '@api/Pokemon/types';
 import { Loader } from '@views/Components/Loader';
 import { Button } from '@views/Elements/Button';
 
@@ -19,24 +19,24 @@ export const DetailCardPage = () => {
 
   useEffect(() => {
     if (paramsDetail) {
-      getFetchPokemons();
+      // getFetchPokemons();
     }
   }, [paramsDetail]);
 
-  const getFetchPokemons = () => {
-    setIsLoading(true);
-    if (!paramsDetail) {
-      return;
-    }
-    pokemonApi.pokemons
-      .getById(paramsDetail)
-      .then((data: Omit<FetchPokemonResponse, 'data'> & { data: PokeCard }) => {
-        if (data) {
-          setData(data.data);
-        }
-      })
-      .finally(() => setIsLoading(false));
-  };
+  // const getFetchPokemons = () => {
+  //   setIsLoading(true);
+  //   if (!paramsDetail) {
+  //     return;
+  //   }
+  //   pokemonApi.pokemons
+  //     .getById(paramsDetail)
+  //     .then((data: Omit<FetchPokemonResponse, 'data'> & { data: PokeCard }) => {
+  //       if (data) {
+  //         setData(data.data);
+  //       }
+  //     })
+  //     .finally(() => setIsLoading(false));
+  // };
 
   if (!data) {
     return null;
