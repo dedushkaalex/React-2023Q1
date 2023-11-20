@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import { useFetch } from '@/hooks/useFetch';
-import { addPokemons } from '@/reducers/pokemon/actions';
 import { LOCAL_STORAGE_POKEMON_SEARCH_QUERY } from '@/utils/constants/LocalStorage';
 
 import { localStorageWrapper as storage } from '@api/LocalStorageApi';
@@ -18,11 +17,12 @@ import styles from './HomePage.module.css';
 export const HomePage = () => {
   const localStorageSearchTextValue = storage.get<string>(LOCAL_STORAGE_POKEMON_SEARCH_QUERY) || '';
   const [searchText, setSearchText] = useState(localStorageSearchTextValue);
-  const { data = [], isFetching, isLoading } = useGetPokemonsQuery(searchText);
+  const { data = [], isFetching, isLoading } = useGetPokemonsQuery();
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParams = searchParams.get('page');
-  // const maxPage = useRef(1);
+  const maxPage = useRef(1);
 
+  console.log(data);
   // useEffect(() => {
   //   getFetchPokemons(searchText);
   // }, [pageParams]);
@@ -44,9 +44,9 @@ export const HomePage = () => {
   // };
 
   const handleSearchPokemon = () => {
-    if (!searchText.trim().length) {
-      return;
-    }
+    // if (!searchText.trim().length) {
+    //   return;
+    // }
 
     if (searchText.trim() !== storage.get<string>(LOCAL_STORAGE_POKEMON_SEARCH_QUERY)) {
       // getFetchPokemons(searchText);
@@ -73,7 +73,7 @@ export const HomePage = () => {
         /> */}
       </div>
 
-      <PokemonList isLoading={isFetching} />
+      <PokemonList />
     </div>
   );
 };

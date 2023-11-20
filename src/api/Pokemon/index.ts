@@ -1,1 +1,1 @@
-export * from './pokemon-slice';
+export * from './pokemon-api';

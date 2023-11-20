@@ -3,12 +3,14 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface State {
   pokemons: PokeCard[];
-  loading: boolean;
+  loadingMainPage: boolean;
+  loadingDetailPage: boolean;
 }
 
 const initialState: State = {
   pokemons: [],
-  loading: false,
+  loadingMainPage: false,
+  loadingDetailPage: false,
 };
 
 export const PokemonsSlice = createSlice({

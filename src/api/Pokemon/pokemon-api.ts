@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import type { FetchPokemonResponse } from './types';
+import type { FetchPokemonResponse, PokeCard } from './types';
 
 //this.get(`/cards/${id}`, options, queryParams),
 // this.get('/cards', options, queryParams),
@@ -19,9 +19,15 @@ export const pokemonApiService = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getPokemons: builder.query<FetchPokemonResponse, string>({
-      query: (pokemonName = '') => `${POKEMON_BASE_URL}?name:${pokemonName.trim()}*`,
+    getPokemons: builder.query<PokeCard[], number | void>({
+      query: (page = 1, searchValue: string = '') => {
+        const q = searchValue ? `name:${searchValue.trim()}*` : '';
+        return `${POKEMON_BASE_URL}?pageSize=${page}&${q}`;
+      },
       providesTags: ['Pokemons'],
+      transformResponse: (response: FetchPokemonResponse) => {
+        return response.data;
+      },
     }),
   }),
 });
