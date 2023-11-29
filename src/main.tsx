@@ -1,11 +1,6 @@
-// import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom/client';
 
-// import { App } from './App';
-// import './styles/global.css';
-// import ErrorBoundary from './views/Components/ErrorBoundary/ErrorBoundary';
+import { App } from '@/app';
+import '@/app/styles/global.css';
 
-// ReactDOM.createRoot(document.getElementById('root')!).render(
-//   <ErrorBoundary>
-//     <App />
-//   </ErrorBoundary>
-// );
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);

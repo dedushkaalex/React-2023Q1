@@ -1,0 +1,31 @@
+:root {
+  --bg: #210a31;
+  --text-color-primary: rgba(255, 255, 255, 0.87);
+  --color-gray-primary: #4c4c4c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Merienda', cursive, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
