@@ -1,7 +1,21 @@
 :root {
-  --bg: #210a31;
-  --text-color-primary: rgba(255, 255, 255, 0.87);
-  --color-gray-primary: #4c4c4c;
+  --bg: #415a77;
+  --system-color-darkBlue-primary: #0d1b2a;
+  --system-color-darkBlue-secondary: #1b263b;
+  --system-color-blue-primary: #415a77;
+  --system-color-blue-secondary: #778da9;
+  --system-color-gray: #e0e1dd;
+  --system-color-red: #d43737;
+  --system-color-violet: #bf37d4;
+
+  /*border*/
+  --system-radius-sm: 5px;
+  --system-radius-lg: 9px;
+  --system-radius-xl: 15px;
+
+  /*transition*/
+  --trans-all-5: all 0.5s ease;
+  --trans-all-3: all 0.3s ease;
 }
 
 * {

@@ -10,7 +10,6 @@ interface InputProps extends HTMLAttributes<HTMLInputElement> {
   className?: string;
   type?: string;
   placeholder?: string;
-  value: string;
 }
 
 export const Input = React.forwardRef<Ref, InputProps>(

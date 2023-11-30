@@ -1,3 +1,9 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -19,6 +25,10 @@
 .form__title {
   font-weight: bold;
   padding-top: 20px;
+}
+
+.field {
+  border: 1px solid #fff;
 }
 
 .form__subtitle {

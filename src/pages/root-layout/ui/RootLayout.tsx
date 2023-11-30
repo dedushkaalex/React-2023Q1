@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
 
-import { Navbar } from '@/widgets/Navbar';
+import { Header } from '@/widgets/Header';
 
 import styles from './RootLayout.module.css';
 
 export const RootLayout = () => {
   return (
-    <div className={styles.content}>
-      <Navbar />
+    <>
+      <Header />
       <main className={styles.content}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 };
