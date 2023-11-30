@@ -18,8 +18,8 @@
   align-items: center;
 }
 
-.form__item {
-  min-height: 90px;
+.form__container form {
+  width: 100%;
 }
 
 .form__title {
@@ -35,18 +35,6 @@
   color: #fff;
   font-size: 14px;
   margin: 10px 0 35px 0;
-}
-
-.error__notify {
-  margin: 2px 0 25px 0;
-  font-size: 14px;
-  color: var(--system-color-red);
-  text-shadow: 0 0 8px var(--system-color-red);
-}
-
-.invalid__field,
-.invalid__field:focus {
-  border: 1px solid var(--system-color-red);
 }
 
 .already__account {

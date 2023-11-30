@@ -30,7 +30,16 @@ export const Header: FC<HeaderProps> = ({ className }) => {
               </NavLink>
             </li>
             <li className={styles.menu__item}>
-              <NavLink to={'/ref_form'}>Ref Form</NavLink>
+              <NavLink
+                to={'/ref_form'}
+                className={({ isActive }) =>
+                  cn({
+                    [styles.active]: isActive,
+                  })
+                }
+              >
+                Ref Form
+              </NavLink>
             </li>
           </ul>
         </nav>

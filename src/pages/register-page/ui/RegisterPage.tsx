@@ -1,39 +1,74 @@
+import { FormProvider, useForm } from 'react-hook-form';
+
+import { registerSchema } from '@/shared/lib/validation';
 import { Button } from '@/shared/ui/Button';
 import { Container } from '@/shared/ui/Container';
+import { Form } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
+
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './RegisterPage.module.css';
 
+type FormFalues = {
+  name: string;
+  age: number;
+  email: string;
+  password: string;
+  confirm_password: string;
+};
+
 export const RegisterPage = () => {
+  const methods = useForm<FormFalues>({
+    resolver: yupResolver(registerSchema),
+    mode: 'onSubmit',
+  });
+  const onSubmit = (data: FormFalues) => console.log(data);
   return (
     <Container>
       <section className={styles.register}>
         <div className={styles.form__container}>
           <h2 className={styles.form__title}>Create a new account</h2>
           <p className={styles.form__subtitle}>RSSchool Top</p>
-          <div className={styles.form__item}>
-            <Input
-              className={styles.field}
-              placeholder='Name'
-            />
-          </div>
+          <FormProvider {...methods}>
+            <Form onSubmit={methods.handleSubmit(onSubmit)}>
+              <Input
+                className={styles.field}
+                placeholder='Name'
+                fieldName='name'
+              />
 
-          <div className={styles.form__item}>
-            <Input
-              className={styles.field}
-              placeholder='Age'
-              type='number'
-            />
-          </div>
+              <Input
+                className={styles.field}
+                placeholder='Age'
+                type='number'
+                fieldName='age'
+              />
 
-          <div className={styles.form__item}>
-            <Input
-              className={styles.field}
-              placeholder='Email'
-              type='email'
-            />
-          </div>
-          <Button>Register </Button>
+              <Input
+                className={styles.field}
+                placeholder='Email'
+                type='text'
+                fieldName='email'
+              />
+
+              <Input
+                className={styles.field}
+                placeholder='Password'
+                type='password'
+                fieldName='password'
+              />
+
+              <Input
+                className={styles.field}
+                placeholder='Confirm password'
+                type='password'
+                fieldName='confirm_password'
+              />
+
+              <Button type='submit'>Register </Button>
+            </Form>
+          </FormProvider>
         </div>
       </section>
     </Container>

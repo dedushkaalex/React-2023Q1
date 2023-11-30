@@ -9,6 +9,7 @@ export const Form: FC<PropsWithChildren<FormProps>> = ({ children, onSubmit }) =
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        console.log(2);
         onSubmit();
       }}
     >
