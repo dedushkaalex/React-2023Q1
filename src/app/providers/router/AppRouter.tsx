@@ -1,13 +1,20 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
+import { RegisterPage } from '@/pages/register-page';
+import { RootLayout } from '@/pages/root-layout';
+
 export const router = createBrowserRouter([
   {
-    element: <p>layout</p>,
+    element: <RootLayout />,
     path: '/',
     children: [
       {
-        index: true,
-        element: <p>Auth</p>,
+        path: 'ref_form',
+        element: <RegisterPage />,
+      },
+      {
+        path: 'control_form',
+        element: <p>Control Form</p>,
       },
     ],
   },
