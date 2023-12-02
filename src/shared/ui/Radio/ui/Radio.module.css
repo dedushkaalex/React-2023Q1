@@ -12,8 +12,8 @@
   margin: 0;
 }
 
-.mcui-radio input[type="radio"],
-.mcui-radio input[type="radio"] {
+.mcui-radio input[type='radio'],
+.mcui-radio input[type='radio'] {
   position: absolute !important;
   height: 0.1rem;
   width: 0.1rem;
@@ -21,8 +21,8 @@
   clip: rect(0.1rem, 0.1rem, 0.1rem, 0.1rem);
 }
 
-.mcui-radio input[type="radio"] + div,
-.mcui-radio input[type="radio"] + div {
+.mcui-radio input[type='radio'] + div,
+.mcui-radio input[type='radio'] + div {
   border: 0.2rem solid #8d9aa9;
   height: 1.5em;
   width: 1.5em;
@@ -30,21 +30,21 @@
   position: relative;
 }
 
-.mcui-radio input[type="radio"] ~ div:last-child,
-.mcui-radio input[type="radio"] ~ div:last-child {
+.mcui-radio input[type='radio'] ~ div:last-child,
+.mcui-radio input[type='radio'] ~ div:last-child {
   padding-left: 0.5em;
 }
 
-.mcui-radio input[type="radio"]:focus + div,
-.mcui-radio input[type="radio"]:active + div,
-.mcui-radio input[type="radio"]:focus + div,
-.mcui-radio input[type="radio"]:active + div {
+.mcui-radio input[type='radio']:focus + div,
+.mcui-radio input[type='radio']:active + div,
+.mcui-radio input[type='radio']:focus + div,
+.mcui-radio input[type='radio']:active + div {
   outline: 0.2rem dashed #8d9aa9;
   outline-offset: 0.2rem;
 }
 
-.mcui-radio input[type="radio"]:checked + div,
-.mcui-radio input[type="radio"]:checked + div {
+.mcui-radio input[type='radio']:checked + div,
+.mcui-radio input[type='radio']:checked + div {
   border-color: black;
   transition: border-color 107ms cubic-bezier(0.65, 0.25, 0.56, 0.96);
 }
@@ -65,21 +65,21 @@
   stroke: currentcolor;
 }
 
-.mcui-radio input[type="radio"]:checked + div .mcui-check,
-.mcui-radio input[type="radio"]:checked + div .mcui-check {
+.mcui-radio input[type='radio']:checked + div .mcui-check,
+.mcui-radio input[type='radio']:checked + div .mcui-check {
   opacity: 1;
   transition: opacity 107ms cubic-bezier(0.65, 0.25, 0.56, 0.96);
 }
 
-.mcui-radio input[type="radio"]:checked + div .mcui-check polyline,
-.mcui-radio input[type="radio"]:checked + div .mcui-check polyline {
+.mcui-radio input[type='radio']:checked + div .mcui-check polyline,
+.mcui-radio input[type='radio']:checked + div .mcui-check polyline {
   -webkit-animation: dash-check 107ms cubic-bezier(0.65, 0.25, 0.56, 0.96) forwards;
   animation: dash-check 107ms cubic-bezier(0.65, 0.25, 0.56, 0.96) forwards;
 }
 
-.mcui-radio input[type="radio"]:indeterminate + div::after,
-.mcui-radio input[type="radio"]:indeterminate + div::after {
-  content: "";
+.mcui-radio input[type='radio']:indeterminate + div::after,
+.mcui-radio input[type='radio']:indeterminate + div::after {
+  content: '';
   height: 10px;
   width: 60%;
   left: 20%;
@@ -90,14 +90,14 @@
   border-radius: 50%;
 }
 
-.mcui-radio input[type="radio"]:disabled ~ div,
-.mcui-radio input[type="radio"]:disabled ~ div {
+.mcui-radio input[type='radio']:disabled ~ div,
+.mcui-radio input[type='radio']:disabled ~ div {
   color: #8d9aa9;
   cursor: not-allowed;
 }
 
-.mcui-radio input[type="radio"]:enabled ~ div,
-.mcui-radio input[type="radio"]:enabled ~ div {
+.mcui-radio input[type='radio']:enabled ~ div,
+.mcui-radio input[type='radio']:enabled ~ div {
   cursor: default;
   flex-shrink: 0;
 }
