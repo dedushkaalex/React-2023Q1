@@ -1,10 +1,12 @@
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { RadioGroup } from '@/entities/RadioGroup/ui/RadioGroup';
 import { registerSchema } from '@/shared/lib/validation';
 import { Button } from '@/shared/ui/Button';
 import { Container } from '@/shared/ui/Container';
 import { Form } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
+import { Radio } from '@/shared/ui/Radio';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -65,6 +67,28 @@ export const RegisterPage = () => {
                 type='password'
                 fieldName='confirm_password'
               />
+
+              <div className={styles.sex}>
+                <RadioGroup
+                  fieldName='sex'
+                  children={
+                    <>
+                      <Radio
+                        title='Male'
+                        htmlFor='male'
+                        value='male'
+                        name='sex'
+                      />
+                      <Radio
+                        title='Female'
+                        htmlFor='female'
+                        value='female'
+                        name='sex'
+                      />
+                    </>
+                  }
+                />
+              </div>
 
               <Button type='submit'>Register </Button>
             </Form>

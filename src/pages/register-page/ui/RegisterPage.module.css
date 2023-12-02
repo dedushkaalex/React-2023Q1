@@ -61,3 +61,10 @@
   justify-content: center;
   gap: 10px;
 }
+
+.sex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10px;
+}
