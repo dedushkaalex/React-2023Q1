@@ -23,4 +23,5 @@ export const registerSchema = object({
     .label('confirm password')
     .required()
     .oneOf([ref('password')], 'Passwords must match'),
+  sex: string().required(),
 });

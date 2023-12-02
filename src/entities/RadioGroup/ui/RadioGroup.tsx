@@ -1,10 +1,46 @@
-// import { FC, FunctionComponent, createElement } from 'react';
+import { useFormContext } from 'react-hook-form';
 
-// interface RadioGroupProps {
-//   children: FunctionComponent<HTMLInputElement>;
-//   fieldName: string;
-// }
+import cn from 'classnames';
 
-// export const RadioGroup: FC<RadioGroupProps> = ({ fieldName, children }) => {
-//   return createElement(children, { fieldName });
-// };
+import { Radio } from '@/shared/ui/Radio';
+
+import styles from './RadioGroup.module.css';
+
+type OptionType = {
+  value: string;
+  title: string;
+};
+
+interface RadioGroupProps {
+  name: string;
+  options: OptionType[];
+  className?: string;
+}
+
+export const RadioGroup = ({ name, options, className }: RadioGroupProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+
+  return (
+    <div className={cn(styles.radio__group, className)}>
+      <div>
+        {options.map(({ value, title }) => (
+          <Radio
+            key={value}
+            name={name}
+            value={value}
+            title={title}
+            register={register}
+            error={errors[name]?.message as string}
+          />
+        ))}
+      </div>
+
+      {Object.keys(errors).length > 0 && name && (
+        <p className={styles.error__notify}>{errors[name]?.message as string}</p>
+      )}
+    </div>
+  );
+};

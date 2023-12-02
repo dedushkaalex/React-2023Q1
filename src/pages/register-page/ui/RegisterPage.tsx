@@ -6,7 +6,6 @@ import { Button } from '@/shared/ui/Button';
 import { Container } from '@/shared/ui/Container';
 import { Form } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
-import { Radio } from '@/shared/ui/Radio';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,6 +17,7 @@ type FormFalues = {
   email: string;
   password: string;
   confirm_password: string;
+  sex: string;
 };
 
 export const RegisterPage = () => {
@@ -70,23 +70,11 @@ export const RegisterPage = () => {
 
               <div className={styles.sex}>
                 <RadioGroup
-                  fieldName='sex'
-                  children={
-                    <>
-                      <Radio
-                        title='Male'
-                        htmlFor='male'
-                        value='male'
-                        name='sex'
-                      />
-                      <Radio
-                        title='Female'
-                        htmlFor='female'
-                        value='female'
-                        name='sex'
-                      />
-                    </>
-                  }
+                  name='sex'
+                  options={[
+                    { title: 'Man', value: 'man' },
+                    { title: 'Woman', value: 'woman' },
+                  ]}
                 />
               </div>
 

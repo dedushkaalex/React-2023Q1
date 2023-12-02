@@ -1,36 +1,41 @@
-import { FC } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 import cn from 'classnames';
 
 import styles from './Radio.module.css';
 
-interface RadioProps {
+interface RadioProps<TFieldValues extends FieldValues> {
   title: string;
-  htmlFor: string;
   className?: string;
   value: string;
-  name: string;
+  name: Path<TFieldValues>;
+  register: UseFormRegister<TFieldValues>;
+  error?: string;
 }
 
-export const Radio: FC<RadioProps> = ({
+export const Radio = <TFieldValues extends Record<string, unknown>>({
   title,
-  htmlFor,
   value,
   name,
+  register,
+  error,
   className = '',
   ...props
-}) => {
+}: RadioProps<TFieldValues>) => {
+  const inputId = `${name}_radio_item_with_value__${value}`;
+
   return (
     <label
       className={cn(className, styles['mcui-radio'])}
-      htmlFor={htmlFor}
+      htmlFor={inputId}
       {...props}
     >
       <input
         type='radio'
-        id={htmlFor}
+        id={inputId}
         value={value}
-        name={name}
+        {...register(name)}
       />
       <div>
         <svg
