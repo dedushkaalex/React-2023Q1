@@ -1,0 +1,40 @@
+.input {
+  height: 80px;
+  background-color: #317471;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  transition: 0.3s ease;
+  margin: 15px 0;
+}
+
+.input:hover {
+  background-color: #102726;
+  cursor: pointer;
+}
+
+.input:hover span {
+  color: #fff;
+  text-shadow: 0px 0px 4px #fff;
+}
+
+.input input {
+  outline: none;
+  width: 100%;
+  border: none;
+  color: #102726;
+  font-size: 18px;
+
+  &::placeholder {
+    color: lightgray;
+  }
+}
+
+.error__notify {
+  margin: 2px 0 25px 0;
+  font-size: 14px;
+  color: var(--system-color-red);
+  text-shadow: 0 0 8px var(--system-color-red);
+}

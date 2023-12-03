@@ -5,6 +5,7 @@ import { registerSchema } from '@/shared/lib/validation';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox/ui/Checkbox';
 import { Container } from '@/shared/ui/Container';
+import { FileLoader } from '@/shared/ui/FileLoader/ui/FileLoader';
 import { Form } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
 
@@ -20,6 +21,7 @@ type FormFalues = {
   confirm_password: string;
   sex: string;
   terms_of_use?: boolean;
+  picture: FileList;
 };
 
 export const RegisterPage = () => {
@@ -27,7 +29,9 @@ export const RegisterPage = () => {
     resolver: yupResolver(registerSchema),
     mode: 'onSubmit',
   });
-  const onSubmit = (data: FormFalues) => console.log(data);
+  const onSubmit = (data: FormFalues) => {
+    console.log(data);
+  };
   return (
     <Container>
       <section className={styles.register}>
@@ -86,6 +90,7 @@ export const RegisterPage = () => {
                   title='accept T&C'
                 />
               </div>
+              <FileLoader fieldName='picture' />
 
               <Button type='submit'>Register </Button>
             </Form>

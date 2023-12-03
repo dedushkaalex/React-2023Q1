@@ -1,7 +1,23 @@
-import { boolean, number, object, ref, string } from 'yup';
+import { boolean, mixed, number, object, ref, string } from 'yup';
 
 const FIRST_LETTER_UPPERCASE_REGEXP = /^([A-Z][a-z0-9_-]{3,19}|[А-Я][а-я0-9_-]{3,19})$/;
 const PASSWORD = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/gm;
+
+const MAX_FILE_SIZE = 402400; //100KB
+
+const validFileExtensions: { [key: string]: string[] } = {
+  image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'],
+};
+
+function isValidFileType(fileName: string, fileType: string) {
+  if (fileName) {
+    const fileExtension = fileName.split('.').pop();
+    if (fileExtension) {
+      return fileName && validFileExtensions[fileType].indexOf(fileExtension) > -1;
+    }
+  }
+  return false;
+}
 
 export const registerSchema = object({
   name: string().required().matches(FIRST_LETTER_UPPERCASE_REGEXP, {
@@ -25,4 +41,20 @@ export const registerSchema = object({
     .oneOf([ref('password')], 'Passwords must match'),
   sex: string().required('Field is required'),
   terms_of_use: boolean().oneOf([true], 'You must accept the user agreement'),
+  picture: mixed<FileList>()
+    .required()
+    .test('required', 'You need to provide a file', (file) => {
+      if (file[0]) return true;
+      return false;
+    })
+    .test(
+      'is-valid-type',
+      'Not a valid image type',
+      (value) => isValidFileType(value[0] && value[0].name.toLowerCase(), 'image') as boolean
+    )
+    .test(
+      'is-valid-size',
+      'Max allowed size is 400KB',
+      (value) => value[0] && value[0].size <= MAX_FILE_SIZE
+    ),
 });
