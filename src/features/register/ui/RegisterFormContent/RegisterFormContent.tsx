@@ -1,9 +1,9 @@
 import { Form } from 'react-router-dom';
 
-import { RadioGroup } from '@/entities/RadioGroup/ui/RadioGroup';
+import { RadioGroup } from '@/entities/RadioGroup';
 import { Button } from '@/shared/ui/Button';
-import { Checkbox } from '@/shared/ui/Checkbox/ui/Checkbox';
-import { FileLoader } from '@/shared/ui/FileLoader/ui/FileLoader';
+import { Checkbox } from '@/shared/ui/Checkbox';
+import { FileLoader } from '@/shared/ui/FileLoader';
 import { Input } from '@/shared/ui/Input';
 
 import styles from './RegisterFormContent.module.css';

@@ -1,1 +1,1 @@
-export { Radio } from './ui/Checkbox';
+export { Checkbox } from './ui/Checkbox';
