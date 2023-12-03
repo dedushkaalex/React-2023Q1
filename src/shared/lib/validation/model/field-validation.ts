@@ -1,4 +1,4 @@
-import { boolean, mixed, number, object, ref, string } from 'yup';
+import { ObjectSchema, boolean, mixed, number, object, ref, string } from 'yup';
 
 const FIRST_LETTER_UPPERCASE_REGEXP = /^([A-Z][a-z0-9_-]{3,19}|[А-Я][а-я0-9_-]{3,19})$/;
 const PASSWORD = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/gm;
@@ -18,8 +18,18 @@ function isValidFileType(fileName: string, fileType: string) {
   }
   return false;
 }
+type FormFalues = ObjectSchema<{
+  name: string;
+  age: number;
+  email: string;
+  password: string;
+  confirm_password: string;
+  sex: string;
+  terms_of_use?: boolean;
+  picture: FileList;
+}>;
 
-export const registerSchema = object({
+export const registerSchema: FormFalues = object({
   name: string().required().matches(FIRST_LETTER_UPPERCASE_REGEXP, {
     excludeEmptyString: true,
     message: 'Only the first character must be a capital letter',

@@ -17,6 +17,7 @@ export const Input = ({
   type = 'text',
   placeholder = '',
   fieldName,
+  ...props
 }: InputProps) => {
   const {
     register,
@@ -42,6 +43,7 @@ export const Input = ({
               className={cn(styles.input, className)}
               autoComplete='off'
               placeholder=''
+              {...props}
             />
           )}
 

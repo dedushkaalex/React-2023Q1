@@ -1,41 +1,20 @@
-import { FC } from 'react';
+import { Form } from 'react-router-dom';
 
-import { FormWithValidation } from '@/entities/Form';
 import { RadioGroup } from '@/entities/RadioGroup/ui/RadioGroup';
-import { registerSchema } from '@/shared/lib/validation';
 import { Button } from '@/shared/ui/Button';
 import { Checkbox } from '@/shared/ui/Checkbox/ui/Checkbox';
 import { FileLoader } from '@/shared/ui/FileLoader/ui/FileLoader';
 import { Input } from '@/shared/ui/Input';
 
-import styles from './RegisterForm.module.css';
+import styles from './RegisterFormContent.module.css';
 
-type FormFalues = {
-  name: string;
-  age: number;
-  email: string;
-  password: string;
-  confirm_password: string;
-  sex: string;
-  terms_of_use?: boolean;
-  picture: FileList;
+type RegisterFormContentProps = {
+  onSubmit: () => void;
 };
 
-interface RegisterFormProps {}
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-export const RegisterForm: FC<RegisterFormProps> = () => {
-  const onSubmit = (data: FormFalues) => {
-    console.log(data);
-  };
-
+export const RegisterFormContent = ({ onSubmit }: RegisterFormContentProps) => {
   return (
-    <FormWithValidation
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      onSubmit={onSubmit}
-      schema={registerSchema}
-    >
+    <Form onSubmit={onSubmit}>
       <Input
         className={styles.field}
         placeholder='Name'
@@ -89,6 +68,6 @@ export const RegisterForm: FC<RegisterFormProps> = () => {
       <FileLoader fieldName='picture' />
 
       <Button type='submit'>Register </Button>
-    </FormWithValidation>
+    </Form>
   );
 };
