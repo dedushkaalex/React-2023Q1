@@ -3,6 +3,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { RadioGroup } from '@/entities/RadioGroup/ui/RadioGroup';
 import { registerSchema } from '@/shared/lib/validation';
 import { Button } from '@/shared/ui/Button';
+import { Checkbox } from '@/shared/ui/Checkbox/ui/Checkbox';
 import { Container } from '@/shared/ui/Container';
 import { Form } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
@@ -18,6 +19,7 @@ type FormFalues = {
   password: string;
   confirm_password: string;
   sex: string;
+  terms_of_use?: boolean;
 };
 
 export const RegisterPage = () => {
@@ -75,6 +77,13 @@ export const RegisterPage = () => {
                     { title: 'Man', value: 'man' },
                     { title: 'Woman', value: 'woman' },
                   ]}
+                />
+              </div>
+
+              <div className={styles.terms}>
+                <Checkbox
+                  name='terms_of_use'
+                  title='accept T&C'
                 />
               </div>
 

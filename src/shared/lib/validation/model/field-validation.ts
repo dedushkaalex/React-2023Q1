@@ -1,4 +1,4 @@
-import { number, object, ref, string } from 'yup';
+import { boolean, number, object, ref, string } from 'yup';
 
 const FIRST_LETTER_UPPERCASE_REGEXP = /^([A-Z][a-z0-9_-]{3,19}|[А-Я][а-я0-9_-]{3,19})$/;
 const PASSWORD = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/gm;
@@ -23,5 +23,6 @@ export const registerSchema = object({
     .label('confirm password')
     .required()
     .oneOf([ref('password')], 'Passwords must match'),
-  sex: string().required(),
+  sex: string().required('Field is required'),
+  terms_of_use: boolean().oneOf([true], 'You must accept the user agreement'),
 });
