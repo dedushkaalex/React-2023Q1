@@ -6,7 +6,7 @@ const PASSWORD = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}
 const MAX_FILE_SIZE = 402400; //100KB
 
 const validFileExtensions: { [key: string]: string[] } = {
-  image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'],
+  image: ['jpg', 'png', 'jpeg'],
 };
 
 function isValidFileType(fileName: string, fileType: string) {

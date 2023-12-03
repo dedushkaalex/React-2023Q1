@@ -1,5 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FormProvider, useForm } from 'react-hook-form';
 
+import { RegisterForm } from '@/app/feature/register';
 import { RadioGroup } from '@/entities/RadioGroup/ui/RadioGroup';
 import { registerSchema } from '@/shared/lib/validation';
 import { Button } from '@/shared/ui/Button';
@@ -9,6 +11,7 @@ import { FileLoader } from '@/shared/ui/FileLoader/ui/FileLoader';
 import { Form } from '@/shared/ui/Form';
 import { Input } from '@/shared/ui/Input';
 
+import { DevTool } from '@hookform/devtools';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './RegisterPage.module.css';
@@ -25,20 +28,20 @@ type FormFalues = {
 };
 
 export const RegisterPage = () => {
-  const methods = useForm<FormFalues>({
-    resolver: yupResolver(registerSchema),
-    mode: 'onSubmit',
-  });
-  const onSubmit = (data: FormFalues) => {
-    console.log(data);
-  };
+  // const methods = useForm<FormFalues>({
+  //   resolver: yupResolver(registerSchema),
+  //   mode: 'onSubmit',
+  // });
+  // const onSubmit = (data: FormFalues) => {
+  //   console.log(data);
+  // };
   return (
     <Container>
       <section className={styles.register}>
         <div className={styles.form__container}>
           <h2 className={styles.form__title}>Create a new account</h2>
           <p className={styles.form__subtitle}>RSSchool Top</p>
-          <FormProvider {...methods}>
+          {/* <FormProvider {...methods}>
             <Form onSubmit={methods.handleSubmit(onSubmit)}>
               <Input
                 className={styles.field}
@@ -94,7 +97,9 @@ export const RegisterPage = () => {
 
               <Button type='submit'>Register </Button>
             </Form>
-          </FormProvider>
+            <DevTool control={methods.control} />
+          </FormProvider> */}
+          <RegisterForm />
         </div>
       </section>
     </Container>

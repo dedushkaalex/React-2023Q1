@@ -18,6 +18,8 @@ export const FileLoader: FC<FileLoaderProps> = ({ fieldName }) => {
       <label className={styles.input}>
         <img
           src={Attach}
+          width={30}
+          height={30}
           alt=''
         />
         <input
