@@ -25,7 +25,7 @@ type FormFalues = ObjectSchema<{
   password: string;
   confirm_password: string;
   sex: string;
-  terms_of_use?: boolean;
+  terms_of_use: boolean;
   picture: FileList;
 }>;
 
@@ -50,7 +50,7 @@ export const registerSchema: FormFalues = object({
     .required()
     .oneOf([ref('password')], 'Passwords must match'),
   sex: string().required('Field is required'),
-  terms_of_use: boolean().oneOf([true], 'You must accept the user agreement'),
+  terms_of_use: boolean().required().oneOf([true, false], 'You must accept the user agreement'),
   picture: mixed<FileList>()
     .required()
     .test('required', 'You need to provide a file', (file) => {

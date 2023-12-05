@@ -2,20 +2,20 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface RegisterFormState {
   name: string;
-  age: number | null;
+  age: number;
   email: string;
   password: string;
-  sex: string | null;
+  sex: string;
   terms_of_use: boolean;
   picture: string;
 }
 
 const State: RegisterFormState = {
   name: '',
-  age: null,
+  age: 0,
   email: '',
   password: '',
-  sex: null,
+  sex: '',
   terms_of_use: false,
   picture: '',
 };

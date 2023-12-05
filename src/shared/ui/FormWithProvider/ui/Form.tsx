@@ -1,15 +1,25 @@
 import React from 'react';
-import { FieldValues, FormProvider, UseFormHandleSubmit, useForm } from 'react-hook-form';
+import {
+  FieldValues,
+  FormProvider,
+  UseFormHandleSubmit,
+  UseFormProps,
+  useForm,
+} from 'react-hook-form';
 
 import { DevTool } from '@hookform/devtools';
 
-interface FormProps {
-  formHookParams: FieldValues;
+interface FormProps<T extends FieldValues = FieldValues> {
+  formHookParams: UseFormProps<T>;
   debug?: boolean;
-  render: (methods: UseFormHandleSubmit<FieldValues>) => JSX.Element;
+  render: (methods: UseFormHandleSubmit<T>) => JSX.Element;
 }
 
-export const FormWithProvider = ({ formHookParams, render, debug = false }: FormProps) => {
+export const FormWithProvider = <T extends FieldValues = FieldValues>({
+  formHookParams,
+  render,
+  debug = false,
+}: FormProps<T>) => {
   const methods = useForm(formHookParams);
 
   return (

@@ -5,6 +5,6 @@ export type TRegisterFormFalues = {
   password: string;
   confirm_password: string;
   sex: string;
-  terms_of_use?: boolean;
+  terms_of_use: boolean;
   picture: FileList;
 };
