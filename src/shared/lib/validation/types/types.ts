@@ -1,4 +1,4 @@
-export type RegisterFormFalues = {
+export type TRegisterFormFalues = {
   name: string;
   age: number;
   email: string;

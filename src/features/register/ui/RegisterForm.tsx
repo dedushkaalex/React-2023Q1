@@ -1,17 +1,21 @@
-import { FC } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
+import { useAppDispatch } from '@/shared/lib/hooks/store';
 import { registerSchema } from '@/shared/lib/validation';
 import { FormWithProvider } from '@/shared/ui/FormWithProvider';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { RegisterFormState, saveFormFields } from '../model/slice';
 import { RegisterFormContent } from './RegisterFormContent/RegisterFormContent';
 
-interface RegisterFormProps {}
+export const RegisterForm = () => {
+  const dispatch = useAppDispatch();
 
-export const RegisterForm: FC<RegisterFormProps> = () => {
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    dispatch(saveFormFields(data as RegisterFormState));
+    console.log(data);
+  };
 
   return (
     <FormWithProvider
