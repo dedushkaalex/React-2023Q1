@@ -1,0 +1,15 @@
+{
+  "endOfLine": "auto",
+  "semi": true,
+  "singleQuote": true,
+  "jsxSingleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "arrowParens": "always",
+  "singleAttributePerLine": true,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": ["^react(.*)", "<THIRD_PARTY_MODULES>", "@/(.*)", "^@(.*)", "^[./ ]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}

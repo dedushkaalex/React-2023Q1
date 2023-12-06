@@ -1,0 +1,17 @@
+.field {
+  border: 1px solid #fff;
+}
+
+.sex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0 10px;
+}
+
+.terms {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  min-height: 100px;
+}
